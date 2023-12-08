@@ -1,0 +1,23 @@
+def shortest_substrs(s, x):
+    result = []
+    
+    for i in range(len(s)):
+        for j in range(i + x, len(s) + 1):
+            substr = s[i:j]
+            if len(substr) >= x and substr[0] == substr[-1]:
+                result.append(substr)
+    
+    if not result:
+        print("ERROR.....NO SUCH SUBSTRINGS FOUND ")
+    else:
+        min_length = min(len(substr) for substr in result)
+        shortest_substrs = [substr for substr in result if len(substr) == min_length]
+        
+        print(f"Shortest substrs with length greater than or equal to {x}:")
+        for substr in shortest_substrs:
+            print(substr)
+
+# Example usage:
+s = "abccdbacca"
+x = 5
+shortest_substrs(s, x)
